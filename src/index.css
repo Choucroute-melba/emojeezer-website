@@ -1,0 +1,122 @@
+:root {
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: #204895;
+  text-decoration: none;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: TwitterChirp, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+
+}
+button:hover {
+  background-color: #f0f0f0;
+}
+
+button:focus, button:focus-visible {
+  background-color: #e0e0e0;
+}
+
+.dangerButton {
+  background-color: #ffe9e9;
+  color: red;
+  border: 1px solid #ff5151;
+}
+
+.dangerButton:hover {
+  background-color: #ffd9d9;
+}
+
+.dangerButton:focus {
+  background-color: #ffb9b9;
+}
+
+.outlined {
+  border: 1px solid #ccc;
+}
+
+.confirmationPopup {
+  position: absolute;
+  top: calc( 50% - 100px );
+  left: calc( 50% - 150px );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.popupBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.0);
+  z-index: 999;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  button {
+    background-color: #2e2e2e;
+  }
+  button:hover {
+    background-color: #3c3c3c;
+  }
+  button:focus, button:focus-visible {
+    background-color: #2e2e2e;
+  }
+}

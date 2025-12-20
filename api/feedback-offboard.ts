@@ -26,8 +26,8 @@ export default {
     fetch(req: Request) {
         if(req.method !== "POST") return new Response("Method not allowed", {status: 405})
         req.json().then((json: any) => {
-            console.log(json)
             const mailContent = json.mailContent
+            console.log("Sending mail:")
             transporter.sendMail({
                 from: '"Emojeezer Uninstallation" <emojeezer@choucroute_melba.github.io>',
                 to: 'vivien@netc.fr, pnom5939@gmail.com',

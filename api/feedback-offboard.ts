@@ -29,14 +29,17 @@ export default {
             console.log(json)
             const mailContent = json.mailContent
             transporter.sendMail({
-                from: '"Emojeezer Uninstallation" <>',
-                to: 'vivien@netc.fr',
+                from: '"Emojeezer Uninstallation" <emojeezer@choucroute_melba.github.io>',
+                to: 'vivien@netc.fr, pnom5939@gmail.com',
                 subject: 'Feedback on Emojeezer Uninstallation',
                 text: mailContent,
             }).catch(e => {
                 console.error("Failed to send the mail", e)
                 return new Response("Failed to send the mail", {status: 500})
-            }).then(() => new Response("Sent!"))
+            }).then(() => {
+                console.log("Sent!")
+                return new Response("Sent!")
+            })
         });
     }
 }

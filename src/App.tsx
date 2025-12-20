@@ -223,7 +223,7 @@ function App() {
                         style={{backgroundColor: "#204895"}}
                         onClick={() => {
                             console.log("Sending mail...")
-                            fetch("/api/feedback", {
+                            fetch("/api/feedback-offboard", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"

@@ -26,7 +26,7 @@ try {
 const app = express();
 app.use(express.json());
 
-app.post('/api/feedback', async (req, res) => {
+app.post('/api/feedback-offboard', async (req, res) => {
     const { mailContent } = req.body;
     // Use nodemailer here to send the mailContent
     try  {

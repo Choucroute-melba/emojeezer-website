@@ -1,32 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import nodemailer from 'nodemailer';
 
 const precisionPrefix = "precision: "
-
-let transporter = undefined
-
-if(process.env.TYPE === "prod") {
-    transporter = nodemailer.createTransport({
-        host: process.env.MAIL_HOST as string,
-        port: Number(process.env.MAIL_PORT),
-        secure: true,
-        auth: {
-            user: process.env.MAIL_USER as string,
-            pass: process.env.MAIL_PASSWORD as string
-        }
-    });
-
-    try {
-        transporter.verify().then(() => {
-            console.log("Server is ready to take our messages")
-        }).catch(err => {
-            console.log("Failed to connect to the mail server", err)
-        })
-    } catch (e) {
-        console.log("Failed to connect to the mail server", e)
-    }
-}
 
 function App() {
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
@@ -246,7 +221,16 @@ function App() {
                     </code>
                     <button
                         style={{backgroundColor: "#204895"}}
-                        onClick={() => {console.log("sending")}}>Confirm</button>
+                        onClick={() => {
+                            console.log("Sending mail...")
+                            fetch("localhost:3001/api/feedback", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify({mailContent: writeMail()})
+                            })
+                        }}>Confirm</button>
                 </div>
             }
         </div>
@@ -328,16 +312,16 @@ function Question({question, possibleAnswers, onAnswer, previousAnswer: previous
 }
 
 function extractOtherPrecision(answer: string): { form: string, other: string } {
-    let start = answer.indexOf(precisionPrefix)
-    if(start === -1) return {form: answer, other: ""}
-    start += precisionPrefix.length
-    let otherString = answer.substring(start)
-    for(let i = 0; i < otherString.length; i++) {
-        if(otherString[i] === ";" || otherString[i] === " ") {
-            otherString = otherString.substring(i)
-        }
-    }
-    return {form: answer.substring(0, start - 1), other: otherString}
+    const start = answer.indexOf(precisionPrefix);
+    if (start === -1) return { form: answer, other: "" };
+
+    // The 'form' is everything before the prefix (removing the trailing "; " if it exists)
+    const formPart = answer.substring(0, start).replace(/;\s*$/, "");
+
+    // The 'other' is everything after the prefix
+    const otherPart = answer.substring(start + precisionPrefix.length);
+
+    return { form: formPart, other: otherPart };
 }
 
-export default App
+export default App;

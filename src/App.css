@@ -45,7 +45,9 @@
   height: 70vh;
   box-shadow: black 0 0 10px;
   border-radius: 7px;
-  background-color: #191919;
+  background-color: rgba(0,0,0,0.6); /* translucide pour laisser voir le flou d'arrière-plan */
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(50px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

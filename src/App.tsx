@@ -3,6 +3,10 @@ import './App.css'
 
 const precisionPrefix = "precision: "
 
+fetch("/api/offboard", {
+    method: "POST"
+})
+
 function App() {
     const [currentStepIndex, setCurrentStepIndex] = useState(0)
     const questions = [
@@ -193,7 +197,7 @@ function App() {
   return (
     <>
         <h1>Sad to see you go</h1>
-        <h3>Please take two clicks to help us make this add-on better</h3>
+        <h3>Please take a few clicks to help us make Emojeezer better</h3>
         <div className={"surveyCard"}>
             <div className={"surveyHeader"}>
                 <p>{currentStepIndex + 1}/{steps.length}</p>

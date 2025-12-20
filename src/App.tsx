@@ -123,6 +123,7 @@ function App() {
     const [steps, setSteps] = useState([0, 3, 5])
     const [answers, setAnswers] = useState<Map<string, string>>(new Map())
     const [finished, setFinished] = useState(false)
+    const [sent, setSent] = useState(false)
 
     const addStep = (step: number, stepsList: number[]): number[] => {
         if(stepsList.includes(step)) return stepsList
@@ -196,7 +197,7 @@ function App() {
         <div className={"surveyCard"}>
             <div className={"surveyHeader"}>
                 <p>{currentStepIndex + 1}/{steps.length}</p>
-                <code>[{steps.join(", ")}]</code>
+                {/*<code>[{steps.join(", ")}]</code>*/}
                 <button style={{fontWeight: 'lighter', display: currentStepIndex === 0 ? "none" : "block"}}
                         onClick={() => {
                             setCurrentStepIndex(currentStepIndex - 1)
@@ -219,7 +220,7 @@ function App() {
                     <code className={"mailPreview"}>
                         {writeMail()}
                     </code>
-                    <button
+                    {!sent && <button
                         style={{backgroundColor: "#204895"}}
                         onClick={() => {
                             console.log("Sending mail...")
@@ -230,7 +231,9 @@ function App() {
                                 },
                                 body: JSON.stringify({mailContent: writeMail()})
                             })
-                        }}>Confirm</button>
+                            setSent(true)
+                        }}>Confirm</button>}
+                    {sent && <h3>Done!</h3>}
                 </div>
             }
         </div>

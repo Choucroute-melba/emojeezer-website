@@ -223,7 +223,7 @@ function App() {
                         style={{backgroundColor: "#204895"}}
                         onClick={() => {
                             console.log("Sending mail...")
-                            fetch("localhost:3001/api/feedback", {
+                            fetch("/api/feedback", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"

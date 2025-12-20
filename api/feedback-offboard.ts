@@ -32,7 +32,7 @@ export default {
         try {
             console.log("Sending mail:")
             await transporter.sendMail({
-                from: '"Emojeezer Uninstallation" <emojeezer@choucroute_melba.github.io>',
+                from: '"Emojeezer Uninstallation" <vivienf@netc.fr>',
                 to: 'vivien@netc.fr, pnom5939@gmail.com',
                 subject: 'Feedback on Emojeezer Uninstallation',
                 text: mailContent,

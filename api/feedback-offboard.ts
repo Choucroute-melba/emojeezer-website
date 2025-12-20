@@ -31,7 +31,7 @@ export default {
         const mailContent = json.mailContent
         try {
             console.log("Sending mail:")
-            transporter.sendMail({
+            await transporter.sendMail({
                 from: '"Emojeezer Uninstallation" <emojeezer@choucroute_melba.github.io>',
                 to: 'vivien@netc.fr, pnom5939@gmail.com',
                 subject: 'Feedback on Emojeezer Uninstallation',

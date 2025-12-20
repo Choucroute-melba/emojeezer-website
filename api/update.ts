@@ -25,14 +25,14 @@ try {
 export default {
     async fetch(req: Request) {
         if(req.method !== "POST") return new Response("Method not allowed", {status: 405})
-
-        const mailContent = "Emojeezer has been uninstalled."
+        const data = await req.json() as any
+        const mailContent = "Emojeezer has been updated to version " + data.toVersion + "."
         try {
             console.log("Sending mail:")
             await transporter.sendMail({
                 from: '"Emojeezer Monitor" <vivienf@netc.fr>',
                 to: 'pnom5939@gmail.com',
-                subject: 'Emojeezer Uninstallation notification',
+                subject: 'Emojeezer Update Notice',
                 text: mailContent,
             });
         } catch (e) {

@@ -26,7 +26,7 @@ export default {
     async fetch(req: Request) {
         if(req.method !== "POST") return new Response("Method not allowed", {status: 405})
         const data = await req.json() as any
-        const mailContent = "Emojeezer has been updated to version " + data.toVersion + "."
+        const mailContent = "Emojeezer " + data.build + " has been updated to version " + data.toVersion + "."
         try {
             console.log("Sending mail:")
             await transporter.sendMail({

@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 console.log("Starting server...")
 console.log(process.env.MAIL_HOST)
-let transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST as string,
     port: Number(process.env.MAIL_PORT),
     secure: true,

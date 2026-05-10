@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import {useState, useEffect, Suspense} from 'react'
 import './page.css'
 import { questions } from "./questions";
 import {useSearchParams} from "next/navigation";
@@ -9,7 +9,15 @@ import {extractOtherPrecision, writeAnswerJSON, writeMail} from "@/app/uninstall
 
 const precisionPrefix = "precision: "
 
-export default function App() {
+export default function Page() {
+    return (
+        <Suspense>
+            <App />
+        </Suspense>
+    )
+}
+
+export function App() {
     const searchParams = useSearchParams()
     const version = searchParams.get("version")
     const buildType = searchParams.get("buildtype")

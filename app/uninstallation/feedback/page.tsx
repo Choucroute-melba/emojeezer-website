@@ -31,7 +31,7 @@ export function App() {
     const [recordId, setRecordId] = useState<number | null>(null)
 
     useEffect(() => {
-        if(!version || !buildType || (buildType !== "release" && buildType !== "debug") || !validateVersion(version)) return
+        if(!version || !buildType || !validateVersion(version)) return
         fetch("/api/usage", {
             method: "POST",
             body: JSON.stringify({
@@ -49,13 +49,9 @@ export function App() {
     if(!version || !buildType) {
         return <h1>Invalid Usage</h1>
     }
-    if(buildType !== "release" && buildType !== "debug") {
-        return <h1>Invalid Build Type</h1>
-    }
     if(!validateVersion(version)) {
         return <h1>Invalid Version {version}</h1>
     }
-
 
     const addStep = (step: number, stepsList: number[]): number[] => {
         if(stepsList.includes(step)) return stepsList

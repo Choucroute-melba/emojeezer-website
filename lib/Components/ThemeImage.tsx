@@ -7,12 +7,12 @@ type Props = Omit<ImageProps, 'src' | 'preload' | 'loading'> & {
 }
 
 export const ThemeImage = (props: Props) => {
-    const { srcLight, srcDark, ...rest } = props
+    const { srcLight, srcDark, alt, ...rest } = props
 
     return (
         <>
-            <Image {...rest} src={srcLight} className={styles.imgLight} />
-            <Image {...rest} src={srcDark} className={styles.imgDark} />
+            <Image {...rest} src={srcLight} className={styles.imgLight} alt={alt}/>
+            <Image {...rest} src={srcDark} className={styles.imgDark} alt={alt} />
         </>
     )
 }

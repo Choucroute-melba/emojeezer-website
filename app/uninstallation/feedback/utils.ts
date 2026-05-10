@@ -22,7 +22,7 @@ export function writeMail(answers: Map<string, string>, precisionPrefix: string)
 export function writeAnswerJSON(answers: Map<string, string>, precisionPrefix: string): string {
     const obj: {question: string, answer: string[]}[] = []
     for(const [question, answer] of answers) {
-        let elt = {
+        const elt = {
             question: question,
             answer: answer.split("; ")
         }

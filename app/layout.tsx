@@ -30,7 +30,8 @@ export default function RootLayout({
           Made by choucroute melba
           <div className={"flex flex-col"}>
             <a href={"https://github.com/choucroute/emojeezer"}>Github</a>
-            <a href={"/uninstallation/feedback?version=168.1.1.1&buildtype=debug"}>Uninstallation feedback</a>
+            { process.env.ENV_TYPE === "dev" &&
+            <a href={"/uninstallation/feedback?version=168.1.1.1&buildtype=debug"}>Uninstallation feedback</a>}
             <a href={"/"}>Home</a>
           </div>
         </footer>

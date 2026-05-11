@@ -15,8 +15,9 @@
 .surveyCard {
     height: 70vh;
     box-shadow: black 0 0 10px;
+    border: 1px solid color-mix(in srgb, var(--foreground), var(--background) 30%);
     border-radius: 7px;
-    background-color: rgba(0,0,0,0.6);
+    background-color: color-mix(in srgb, color-mix(in srgb, var(--background), var(--foreground) 10%), transparent 50%);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(50px);
     display: flex;

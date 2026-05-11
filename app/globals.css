@@ -214,6 +214,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     color: var(--foreground);
     background: var(--background);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
@@ -250,6 +251,12 @@
   h2 {
     font-family: "Libre Franklin", var(--font-geist-sans), Arial, Helvetica, sans-serif;
     font-size: 2.5em;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-family: "Libre Franklin", var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    font-size: 2rem;
     font-weight: bold;
   }
 

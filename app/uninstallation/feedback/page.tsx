@@ -89,17 +89,17 @@ export function App() {
     return (
         <>
             <h1>Sad to see you go</h1>
-            <h3>Please take a few clicks to help us make Emojeezer better</h3>
+            <p className={"text-xl"}>Please take a few clicks to help us make Emojeezer better</p>
             <div className={"surveyCard"}>
                 <div className={"surveyHeader"}>
                     <p>{currentStepIndex + 1}/{steps.length}</p>
                     {/*<code>[{steps.join(", ")}]</code>*/}
-                    <button style={{fontWeight: 'lighter', display: currentStepIndex === 0 ? "none" : "block"}}
+                    <button className={"border-none"} style={{fontWeight: 'lighter', display: currentStepIndex === 0 ? "none" : "block"}}
                             onClick={() => {
                                 setCurrentStepIndex(currentStepIndex - 1)
                                 setFinished(false)
                             }
-                            }
+                    }
                     >{"< Previous"}</button>
                 </div>
                 {!finished && <Question
@@ -117,7 +117,7 @@ export function App() {
                             {writeMail(answers, precisionPrefix)}
                         </code>
                         {!sent && <button
-                            style={{backgroundColor: "#204895"}}
+                            className={"primary w-1/3"}
                             onClick={() => {
                                 console.log("Sending mail...")
                                 fetch("/api/feedback-offboard", {
@@ -162,7 +162,7 @@ function Question({question, possibleAnswers, onAnswer, previousAnswer: previous
     }
     return (
         <div className={"formContainer"}>
-            <h2>{question}</h2>
+            <h3 className={""}>{question}</h3>
             <p className={"surveyIndicator"}>Please select all that apply:</p>
             <form className={"surveyForm"} onSubmit={(e) => {
                 e.preventDefault()
@@ -208,7 +208,9 @@ function Question({question, possibleAnswers, onAnswer, previousAnswer: previous
                         />
                     </label>
                 </div>
-                <button type={"submit"} className={"surveySubmit"}>{lastQuestion ? "Finish" : ((answer === "" && otherPrecision === "") ? "Skip" : "Next")}</button>
+                <button type={"submit"} className={(answer === "" && otherPrecision === "" && !lastQuestion) ? "" : " primary " + "surveySubmit"}>
+                    {lastQuestion ? "Finish" : ((answer === "" && otherPrecision === "") ? "Skip" : "Next")}
+                </button>
             </form>
         </div>
     )

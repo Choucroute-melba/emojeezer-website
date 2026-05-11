@@ -24,15 +24,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <head>
+      <title>Emojeezer</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
       <body>
         {children}
-        <footer>
+        <footer className={"w-full ml-20 mb-10"}>
           Made by choucroute melba
-          <div className={"flex flex-col"}>
-            <a href={"https://github.com/choucroute/emojeezer"}>Github</a>
+          <div className={"flex flex-col *:text-gray-500"}>
+            <a href={"/"}><pre>Home</pre></a>
+            <a href={"https://github.com/choucroute/emojeezer"}><pre>Github</pre></a>
             { process.env.ENV_TYPE === "dev" &&
-            <a href={"/uninstallation/feedback?version=168.1.1.1&buildtype=debug"}>Uninstallation feedback</a>}
-            <a href={"/"}>Home</a>
+                <a href={"/uninstallation/feedback?version=168.1.1.1&buildtype=debug"}><pre>Uninstallation feedback</pre></a>}
+
           </div>
         </footer>
       </body>

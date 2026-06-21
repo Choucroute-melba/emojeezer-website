@@ -27,6 +27,8 @@ export function App() {
     const [answers, setAnswers] = useState<Map<string, string>>(new Map())
     const [finished, setFinished] = useState(false)
     const [sent, setSent] = useState(false)
+    const [sending, setSending] = useState(false)
+    const [replyAddress, setReplyAddress] = useState("")
 
     const [recordId, setRecordId] = useState<number | null>(null)
 
@@ -112,14 +114,28 @@ export function App() {
                 {finished &&
                     <div className={"formContainer"}>
                         <h2>Thank you for your feedback!</h2>
+                        <label>Please leave your email address if you&#39;re open being contacted regarding your feedback :
+                            <input
+                                className={"bg-surface m-2 p-1 border-current border rounded-lg "}
+                                type={"email"}
+                                placeholder={"scary_face@emoji.fr"}
+                                defaultValue={""}
+                                onChange={(e) => {
+                                    setReplyAddress(e.target.value)
+                                }}
+                            />
+                        </label>
                         <p>The following informations will be sent to the support when you click &#39;confirm&#39; : </p>
+
                         <code className={"mailPreview"}>
                             {writeMail(answers, precisionPrefix)}
                         </code>
                         {!sent && <button
                             className={"primary w-1/3"}
+                            disabled={sending}
                             onClick={() => {
                                 console.log("Sending mail...")
+                                setSending(true)
                                 fetch("/api/feedback-offboard", {
                                     method: "POST",
                                     headers: {
@@ -128,11 +144,14 @@ export function App() {
                                     body: JSON.stringify({
                                         json: writeAnswerJSON(answers, precisionPrefix),
                                         mailContent: writeMail(answers, precisionPrefix),
-                                        recordId: recordId
+                                        recordId: recordId,
+                                        replyTo: replyAddress
                                     })
+                                }).then(res => {
+                                    setSending(false)
+                                    setSent(true)
                                 })
-                                setSent(true)
-                            }}>Confirm</button>}
+                            }}>{sending ? "Sending..." : "Confirm"}</button>}
                         {sent && <h3>Done!</h3>}
                     </div>
                 }
@@ -200,6 +219,7 @@ function Question({question, possibleAnswers, onAnswer, previousAnswer: previous
                     <label className={"surveyAnswer otherAnswer"}>
                         <textarea placeholder={"Other"}
                                   style={{resize: "vertical", width: "100%"}}
+                                  className={"bg-surface m-2 p-1 border-[#a8a8a8] border rounded-lg "}
                                   value={otherPrecision}
                                   onInput={(e) => {
                                       const target = e.target as HTMLTextAreaElement

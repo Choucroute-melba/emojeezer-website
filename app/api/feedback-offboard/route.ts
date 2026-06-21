@@ -34,8 +34,8 @@ export async function POST(req: NextRequest) {
     const sql = neon(process.env.DATABASE_URL)
     try {
         await sql`
-            INSERT INTO offboard_survey (record_entry, data)
-            VALUES (${json.recordId}, ${json.json})
+            INSERT INTO offboard_survey (record_entry, data, reply_to)
+            VALUES (${json.recordId}, ${json.json}, ${json.replyTo})
         `
     }
     catch (e) {

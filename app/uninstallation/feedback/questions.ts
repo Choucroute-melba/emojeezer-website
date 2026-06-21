@@ -80,7 +80,7 @@ export const questions = [
         ]
     },
     {
-        text: "What was not working as expected ? Please precise specific websites or scenarios in the 'other' field.",
+        text: "What was not working as expected ? Specify websites or scenarios in the 'other' field.",
         answers: [
             {
                 name: "specific_websites_not_working",
